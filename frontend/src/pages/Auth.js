@@ -1,10 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
+import AuthContext from "../context/auth-context";
 import "./Auth.css";
 
 export default function Auth() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const { login } = useContext(AuthContext);
 
   const switchModeHandler = () => {
     setIsLoggedIn(!isLoggedIn);
@@ -56,8 +58,14 @@ export default function Auth() {
         }
         return res.json();
       })
-      .then(data => {
-        console.log(data);
+      .then(res => {
+        if (res.data.login.token) {
+          login(
+            res.data.login.token,
+            res.data.login.userId,
+            res.data.login.tokenExpiration
+          );
+        }
       })
       .catch(err => {
         console.log(err);
