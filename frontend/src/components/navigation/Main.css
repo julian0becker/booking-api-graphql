@@ -24,19 +24,24 @@
   list-style: none;
   display: flex;
   margin: 0;
+  align-items: center;
 }
 
 .main-navigation_items li {
   margin: 0 1rem;
 }
 
-.main-navigation_items a {
+.main-navigation_items a,
+.main-navigation_items button {
   text-decoration: none;
   color: orange;
+
+  cursor: pointer;
 }
 
 .main-navigation_items a:hover,
 .main-navigation_items a:active,
-.main-navigation_items a.active {
+.main-navigation_items a.active,
+.main-navigation_items button:hover .main-navigation_items button:active {
   color: black;
 }

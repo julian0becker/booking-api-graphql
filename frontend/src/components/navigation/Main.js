@@ -4,7 +4,7 @@ import "./Main.css";
 import AuthContext from "../../context/auth-context";
 
 export default function MainNavigation() {
-  const { token } = useContext(AuthContext);
+  const { token, logout } = useContext(AuthContext);
 
   return (
     <header className="main-navigation">
@@ -22,9 +22,14 @@ export default function MainNavigation() {
             <NavLink to="/events">Events</NavLink>
           </li>
           {token && (
-            <li>
-              <NavLink to="/bookings">Bookings</NavLink>
-            </li>
+            <React.Fragment>
+              <li>
+                <NavLink to="/bookings">Bookings</NavLink>
+              </li>
+              <li>
+                <button onClick={logout}>Logout</button>
+              </li>
+            </React.Fragment>
           )}
         </ul>
       </nav>

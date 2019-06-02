@@ -35,7 +35,8 @@ mongoose
       process.env.MONGO_PASSWORD
     }@cluster0-rvkbb.mongodb.net/${
       process.env.MONGO_DB
-    }?retryWrites=true&w=majority`
+    }?retryWrites=true&w=majority`,
+    { useNewUrlParser: true }
   )
   .then(() => {
     app.listen(8000, () => console.log("server is listening"));
